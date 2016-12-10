@@ -18,7 +18,7 @@ This is designed to be a nice chunk of boilerplate that sets up a NodeJS project
 * Jade
 * Stylus
 
-[You Can See It Live Here!](https://nodestack.herokuapp.com/)
+[You Can See It Live Here!](https://nodestack-.herokuapp.com/)
 
 It uses Node 6.9.0 and Mongo 3.2
 
