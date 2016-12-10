@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='initial-scale=1')
+    meta(name='description', content='Application description')
+    title #{title}
+    link(rel='stylesheet', href='/css/index.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css') 
+    link(rel='icon' type='image/png' href='https://raw.githubusercontent.com/bag-man/nodeup/master/public/assets/imgs/favicon.ico')
+  body
+    main.content
+      block content
+
+  include footer
+
