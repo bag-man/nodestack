@@ -2,7 +2,7 @@ const Socket = require('socket.io')
 
 module.exports = (server) => {
   const io = Socket.listen(server)
-  const ROOM_SIZE = 2
+  const ROOM_SIZE = 1
 
   io.sockets.on('connection', (socket) => {
 
@@ -21,8 +21,15 @@ module.exports = (server) => {
     })
 
     socket.on('disconnect', () => {
-      io.sockets.in(socket.room).emit('left', socket.id + ' has left')
+      io.sockets.in(socket.id).emit('left', socket.id + ' has left')
       console.log(socket.id + ': client disconnected')
+    })
+
+    socket.on('send', (img) => {
+      console.log(img)
+      // do stuff
+      io.sockets.in(socket.id).emit('hrUpdate', 90)
+      console.log('hr sent to ' + socket.id)
     })
   })
 }

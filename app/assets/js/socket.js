@@ -8,6 +8,10 @@ class Socket {
       this.room = this.socket.io.engine.id
       this.socket.emit('join', this.room)
     })
+
+    this.socket.on('joined', () => {
+      console.log('connected to server')
+    })
   }
 
 }
