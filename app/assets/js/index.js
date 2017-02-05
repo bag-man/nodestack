@@ -5,5 +5,7 @@ let socket = new Socket(window.io)
   , action = new Action(socket)
 
 $('.send').on('click', () => {
-  action.send()
+  action.stream()
 })
+
+
