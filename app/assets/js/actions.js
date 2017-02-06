@@ -1,18 +1,30 @@
+const clm = require('./lib/clmtrackr.js')
+const pModel = require('./lib/model_pca_20_svm.js')
+
+
 class Actions {
 
   constructor (socket) {
     this.socket = socket.socket
 
-    this.canvas = document.getElementById('canvas')
-    this.width = 640
-    this.height = 480
-    this.canvasFace = document.getElementById('canvas-face')
-    this.context = this.canvasFace.getContext('2d')
-    this.img = new Image()
+    this.vid = document.getElementById('videoel');
+		this.overlay = document.getElementById('overlay');
+		this.overlayCC = this.overlay.getContext('2d');
+
+    // this.canvas = document.getElementById('canvas')
+    // this.width = 400
+    // this.height = 300
+    // this.canvasFace = document.getElementById('canvas-face')
+    // this.context = this.canvasFace.getContext('2d')
+    // this.img = new Image()
+    // this.video = document.getElementById('video')
 
     // show loading notice
-    this.context.fillStyle = '#333'
-    this.context.fillText('Loading...', this.canvasFace.width / 2 - 30, this.canvasFace.height / 3)
+    // this.overlayCC.fillStyle = '#333'
+    // this.overlayCC.fillText('Loading...', this.canvasFace.width / 2 - 30, this.canvasFace.height / 3)
+
+    this.ctrack = new clm.Tracker({useWebGL: true})
+		this.ctrack.init(pModel)
 
     this.socket.on('hrUpdate', this.hrUpdate.bind(this))
     this.socket.on('frame', this.loadImage.bind(this))
@@ -29,9 +41,9 @@ class Actions {
 
       // success callback
       (mediaStream) => {
-        this.video = document.getElementsByTagName('video')[0]
-        this.video.src = window.URL.createObjectURL(mediaStream)
-        this.video.play()
+        this.vid.src = window.URL.createObjectURL(mediaStream)
+        this.vid.play()
+        this.ctrack.start(this.vid)
         setInterval(this.takePicture.bind(this)
         , 100)
       },
@@ -48,15 +60,21 @@ class Actions {
 
 
   takePicture () {
-      let context = this.canvas.getContext('2d')
-      if (this.width && this.height) {
-        this.canvas.width = this.width
-        this.canvas.height = this.height
-        context.drawImage(this.video, 0, 0, this.width, this.height)
-        let jpgQuality = 0.6
-        let theDataURL = this.canvas.toDataURL('image/jpeg', jpgQuality)
-        this.socket.emit('stream', theDataURL)
-    }
+      this.overlayCC.clearRect(0, 0, 400, 300)
+      let positions = this.ctrack.getCurrentPosition()
+			if (positions) {
+					this.ctrack.draw(this.overlay)
+			}
+      // window.requestAnimFrame(this.takePicture())      
+    //   let context = this.canvas.getContext('2d')
+    //   if (this.width && this.height) {
+    //     this.canvas.width = this.width
+    //     this.canvas.height = this.height
+    //     context.drawImage(this.video, 0, 0, this.width, this.height)
+    //     let jpgQuality = 0.6
+    //     let theDataURL = this.canvas.toDataURL('image/jpeg', jpgQuality)
+    //     this.socket.emit('stream', theDataURL)
+    // }
   }
 
   loadImage (data) {
