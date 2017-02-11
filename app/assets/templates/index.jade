@@ -1,8 +1,9 @@
 extend default
 
-block content 
-  button.send Hello World
+block content
   div(id="container")
-    video(id="videoel" width="400" height="300" preload="auto" loop)
-    canvas(id="overlay" width="400" height="300")
+    video(id="video" width="1024" height="768" preload="auto" loop)
+    canvas(id="overlay" width="1024" height="768")
   input(class="btn" type="button" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton")
+  button.send Hello World
+  

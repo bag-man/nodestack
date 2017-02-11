@@ -7,5 +7,3 @@ let socket = new Socket(window.io)
 $('.send').on('click', () => {
   action.stream()
 })
-
-
