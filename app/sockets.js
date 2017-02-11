@@ -1,5 +1,4 @@
 const Socket = require('socket.io')
-  , cv = require('opencv')
   , async = require('async')
 
 module.exports = (server) => {
@@ -28,32 +27,32 @@ module.exports = (server) => {
     })
 
     socket.on('stream', (img) => {
-      // do stuff
-      io.sockets.in(socket.id).emit('hrUpdate', 90)
-      console.log('hr sent to ' + socket.id)
+      // // do stuff
+      // io.sockets.in(socket.id).emit('hrUpdate', 90)
+      // console.log('hr sent to ' + socket.id)
 
-      let output = img.replace(/^data:image\/(png|jpeg);base64,/, '')
-      let buffer = new Buffer(output, 'base64')
+      // let output = img.replace(/^data:image\/(png|jpeg);base64,/, '')
+      // let buffer = new Buffer(output, 'base64')
 
-      async.auto({
-        readFromSocket: function (callback) {
-          readFromSocket(buffer, callback)
-        }
-        , face: ['readFromSocket', function (results, callback) {
-          detect(cv.FACE_CASCADE, callback, results)
-        }]
-        , eyes: ['readFromSocket', function (results, callback) {
-          detect('./node_modules/opencv/data/haarcascade_mcs_eyepair_small.xml', callback, results)
-        }]
-      }, function (err, results) {
-        emitFrame(err, results)
-      })
+      // async.auto({
+      //   readFromSocket: function (callback) {
+      //     readFromSocket(buffer, callback)
+      //   }
+      //   , face: ['readFromSocket', function (results, callback) {
+      //     detect(cv.FACE_CASCADE, callback, results)
+      //   }]
+      //   , eyes: ['readFromSocket', function (results, callback) {
+      //     detect('./node_modules/opencv/data/haarcascade_mcs_eyepair_small.xml', callback, results)
+      //   }]
+      // }, function (err, results) {
+      //   emitFrame(err, results)
+      // })
     })
 
     function readFromSocket (buffer, callback) {
-      cv.readImage(buffer, function (err, mat) {
-        callback(err, mat)
-      })
+      // cv.readImage(buffer, function (err, mat) {
+      //   callback(err, mat)
+      // })
     }
 
     function detect (haarfile, callback, results) {
