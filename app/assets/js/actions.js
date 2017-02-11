@@ -21,7 +21,7 @@ class Actions {
     this.facetracker = new clm.Tracker({useWebGL: true})
 		this.facetracker.init(pModel) // pModel is a model more to pick from on github
 
-    this.socket.on('hrUpdate', this.hrUpdate.bind(this))
+    // this.socket.on('hrUpdate', this.hrUpdate.bind(this))
     // this.socket.on('frame', this.loadImage.bind(this))
  }
 
