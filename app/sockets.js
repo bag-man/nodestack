@@ -1,5 +1,5 @@
 const Socket = require('socket.io')
-  , async = require('async')
+  // , async = require('async')
 
 module.exports = (server) => {
   const io = Socket.listen(server)
@@ -26,7 +26,7 @@ module.exports = (server) => {
       console.log(socket.id + ': client disconnected')
     })
 
-    socket.on('stream', (img) => {
+    // socket.on('stream', (img) => {
       // // do stuff
       // io.sockets.in(socket.id).emit('hrUpdate', 90)
       // console.log('hr sent to ' + socket.id)
@@ -47,37 +47,37 @@ module.exports = (server) => {
       // }, function (err, results) {
       //   emitFrame(err, results)
       // })
-    })
+    // })
 
-    function readFromSocket (buffer, callback) {
+    // function readFromSocket (buffer, callback) {
       // cv.readImage(buffer, function (err, mat) {
       //   callback(err, mat)
       // })
-    }
+    // }
 
-    function detect (haarfile, callback, results) {
-      var im = results['readFromSocket']
-      im.detectObject(haarfile, {}, function (err, faces) {
-        if (err) callback(err)
+    // function detect (haarfile, callback, results) {
+    //   var im = results['readFromSocket']
+    //   im.detectObject(haarfile, {}, function (err, faces) {
+    //     if (err) callback(err)
 
-        for (var i = 0; i < faces.length; i++) {
-          let face = faces[i]
-          im.ellipse(face.x + face.width / 2, face.y + face.height / 2, face.width / 2, face.height / 2)
-        }
-        callback(null, im)
-      })
-    }
+    //     for (var i = 0; i < faces.length; i++) {
+    //       let face = faces[i]
+    //       im.ellipse(face.x + face.width / 2, face.y + face.height / 2, face.width / 2, face.height / 2)
+    //     }
+    //     callback(null, im)
+    //   })
+    // }
 
-    function emitFrame (err, results) {
-      if (err) {
+    // function emitFrame (err, results) {
+    //   if (err) {
 
-      } else {
-        var im = results['eyes']
-        io.sockets.in(socket.id).emit('frame', {
-          buffer: im.toBuffer()
-        })
-      }
-    }
+    //   } else {
+    //     var im = results['eyes']
+    //     io.sockets.in(socket.id).emit('frame', {
+    //       buffer: im.toBuffer()
+    //     })
+    //   }
+    // }
 
   })
 }
