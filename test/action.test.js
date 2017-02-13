@@ -63,4 +63,11 @@ describe('Action', () => {
         })
     })
 
+    describe('processImage', () => {
+        it('should return underfined if passed undefined', (done) => {
+            let imgData = actions.processImage(undefined)
+            assert.equal(imgData, undefined, 'not returning undefined')
+            done()
+        })
+    })
 })
