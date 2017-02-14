@@ -3,7 +3,7 @@ const pModel = require('./lib/model_pca_20_svm.js')
 
 class Actions {
 
-  constructor (socket) {
+  constructor(socket) {
     this.socket = socket.socket
 
     this.frameRate = 15
@@ -17,14 +17,14 @@ class Actions {
 
     // this.socket.on('hrUpdate', this.hrUpdate.bind(this))
     // this.socket.on('frame', this.loadImage.bind(this))
- }
+  }
 
-  stream () {
+  stream() {
     this.video = document.getElementById('video')
-		this.overlay = document.getElementById('overlay')
-		this.overlayContext = this.overlay.getContext('2d')
-    this.facetracker = new clm.Tracker({useWebGL: true})
-		this.facetracker.init(pModel) // pModel is a model more to pick from on github
+    this.overlay = document.getElementById('overlay')
+    this.overlayContext = this.overlay.getContext('2d')
+    this.facetracker = new clm.Tracker({ useWebGL: true })
+    this.facetracker.init(pModel) // pModel is a model more to pick from on github
 
     navigator.getMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia)
     navigator.getMedia(
@@ -35,42 +35,40 @@ class Actions {
           width: { ideal: this.width }
           , height: { ideal: this.height }
         }
-      },
-      // success callback
+      }, // success callback
       (mediaStream) => {
         this.video.src = window.URL.createObjectURL(mediaStream)
         this.video.play()
         this.facetracker.start(this.video)
         setInterval(this.takePicture.bind(this)
-        , 1000 / this.frameRate)
-      },
-      // handle error
+          , 1000 / this.frameRate)
+      }, // handle error
       function (error) {
         console.log(error)
       })
   }
 
-  takePicture () {
-      this.overlayContext.clearRect(0, 0, this.width, this.height)
-      let positions = this.facetracker.getCurrentPosition()
-      let box = this.pickBox(positions)
+  takePicture() {
+    this.overlayContext.clearRect(0, 0, this.width, this.height)
+    let positions = this.facetracker.getCurrentPosition()
+    let box = this.pickBox(positions)
 
-			if (box) {
-					this.facetracker.draw(this.overlay)
+    if (box) {
+      this.facetracker.draw(this.overlay)
 
-          this.overlayContext.strokeRect(box.l, box.t, box.r - box.l, box.b - box.t)
-          let imgData = this.overlayContext.getImageData(box.l, box.t, this.pixelResolution, this.pixelResolution)
+      this.overlayContext.strokeRect(box.l, box.t, box.r - box.l, box.b - box.t)
+      let imgData = this.overlayContext.getImageData(box.l, box.t, this.pixelResolution, this.pixelResolution)
 
-          this.processImage(imgData)
-			}
+      this.processImage(imgData)
+    }
   }
 
-  processImage (imgData) {
+  processImage(imgData) {
     if (imgData) {
       let red = []
-          , green = []
-          , blue = []
-          , alpha = []
+        , green = []
+        , blue = []
+        , alpha = []
 
       for (let x = 0; x < this.pixelResolution * this.pixelResolution; x++) {
         red[x] = imgData.data[0 + (4 * x)]
@@ -90,7 +88,7 @@ class Actions {
     }
   }
 
-  pickBox (positions) {
+  pickBox(positions) {
     if (positions) {
       let r, b, t, l
 
@@ -117,10 +115,12 @@ class Actions {
         b = parseInt(b2)
       }
 
-      return { r: r
-             , l: l
-             , t: t
-             , b: b}
+      return {
+        r: r
+        , l: l
+        , t: t
+        , b: b
+      }
 
     } else {
       return undefined
@@ -132,28 +132,28 @@ class Actions {
   // }
 
   // sendImage () {
-    //   let context = this.canvas.getContext('2d')
-    //   if (this.width && this.height) {
-    //     this.canvas.width = this.width
-    //     this.canvas.height = this.height
-    //     context.drawImage(this.video, 0, 0, this.width, this.height)
-    //     let jpgQuality = 0.6
-    //     let theDataURL = this.canvas.toDataURL('image/jpeg', jpgQuality)
-    //     this.socket.emit('stream', theDataURL)
-    // }
+  //   let context = this.canvas.getContext('2d')
+  //   if (this.width && this.height) {
+  //     this.canvas.width = this.width
+  //     this.canvas.height = this.height
+  //     context.drawImage(this.video, 0, 0, this.width, this.height)
+  //     let jpgQuality = 0.6
+  //     let theDataURL = this.canvas.toDataURL('image/jpeg', jpgQuality)
+  //     this.socket.emit('stream', theDataURL)
+  // }
   // }
 
   // loadImage (data) {
-    // let uint8Arr = new Uint8Array(data.buffer)
-    // let str = String.fromCharCode.apply(null, uint8Arr)
-    // let base64String = btoa(str)
-    // let context = this.context
-    // let canvasFaceWidth = this.canvasFace.width
-    // let canvasFaceHeight = this.canvasFace.height
-    // this.img.onload = function () {
-    //   context.drawImage(this, 0, 0, canvasFaceWidth, canvasFaceHeight)
-    // }
-    // this.img.src = 'data:image/png;base64,' + base64String
+  // let uint8Arr = new Uint8Array(data.buffer)
+  // let str = String.fromCharCode.apply(null, uint8Arr)
+  // let base64String = btoa(str)
+  // let context = this.context
+  // let canvasFaceWidth = this.canvasFace.width
+  // let canvasFaceHeight = this.canvasFace.height
+  // this.img.onload = function () {
+  //   context.drawImage(this, 0, 0, canvasFaceWidth, canvasFaceHeight)
+  // }
+  // this.img.src = 'data:image/png;base64,' + base64String
   // }
 
 }
