@@ -1,4 +1,9 @@
 extend default
 
-block content 
-  button.echo Hello World
+block content
+  div(id="container")
+    video(id="video" width="1024" height="768" preload="auto" loop)
+    canvas(id="overlay" width="1024" height="768")
+  input(class="btn" type="button" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton")
+  button.send Hello World
+  

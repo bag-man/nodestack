@@ -6,14 +6,11 @@ class Socket {
 
     this.socket.on('connect', () => {
       this.room = this.socket.io.engine.id
-
-      if (window.location.hash) {
-        this.room = window.location.hash.substring(1)
-      } else {
-        window.location.hash = this.room
-      }
-
       this.socket.emit('join', this.room)
+    })
+
+    this.socket.on('joined', () => {
+      console.log('connected to server')
     })
   }
 

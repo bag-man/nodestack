@@ -4,7 +4,7 @@
   "description": "Description of project",
   "main": "app/server.js",
   "scripts": {
-    "test": "npm run base-test; rm -rf coverage/",
+    "test": "npm run base-test ; rm -rf coverage/",
     "build-css": "./node_modules/stylus/bin/stylus app/assets/stylesheets/index.styl -o app/assets/build/css",
     "watch-css": "./node_modules/stylus/bin/stylus app/assets/stylesheets/index.styl -o app/assets/build/css -w",
     "build-js": "./node_modules/.bin/webpack -p",
@@ -13,7 +13,7 @@
     "build": "npm run clean && npm run build-css && npm run build-js",
     "watch": "npm run clean && npm run watch-css & npm run watch-js & nodemon -w app/ -e js,jade",
     "start": "node app/server",
-    "base-test": "npm run lint && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register",
+    "base-test": "npm run lint && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register -r jsdom-global/register",
     "travis": "npm run base-test && ./node_modules/.bin/codecov",
     "lint": "./node_modules/.bin/eslint -f unix .",
     "postinstall": "npm run build"
@@ -31,10 +31,13 @@
     "eslint-plugin-promise": "^3.3.0",
     "eslint-plugin-standard": "^1.3.1",
     "istanbul": "^1.0.0-alpha.2",
+    "jsdom": "9.11.0",
+    "jsdom-global": "2.1.1",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "async": "^2.1.4",
     "babel": "^6.5.2",
     "babel-core": "^6.18.0",
     "babel-loader": "^6.2.5",
