@@ -2,6 +2,9 @@
   "name": "ProjectName",
   "version": "1.0.0",
   "description": "Description of project",
+  "repository" : { "type" : "git" , "url" : "git@github.com:bag-man/nodestack.git" }
+  "author": "Authors name(s)",
+  "license": "GPL-3.0",
   "main": "app/server.js",
   "scripts": {
     "test": "npm run base-test; rm -rf coverage/",
@@ -21,8 +24,6 @@
   "engines": {
     "node": "6.9.0"
   },
-  "author": "Authors name(s)",
-  "license": "GPLv3",
   "devDependencies": {
     "codecov": "^1.0.1",
     "eslint": "^2.3.0",
