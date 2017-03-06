@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/bag-man/nodestack.png?label=ready&title=Ready)](https://waffle.io/bag-man/nodestack)
 # nodestack
 
 [![Build Status](https://img.shields.io/travis/bag-man/nodestack.svg?style=flat-square)](https://travis-ci.org/bag-man/nodestack)
