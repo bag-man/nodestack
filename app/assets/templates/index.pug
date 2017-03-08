@@ -2,3 +2,11 @@ extend header
 
 block content 
   button.echo Hello World
+
+  form(action='/generic', method='GET')
+    p
+      | foo: 
+      input(type='text', name='foo')
+
+      button.search search
+

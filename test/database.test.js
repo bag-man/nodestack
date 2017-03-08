@@ -4,30 +4,40 @@ const Database = require('../app/database')
 
 describe('Database', () => {
   let database
+    , mockItem = { foo: 'bar' }
 
   beforeEach((done) => {
     database = new Database(dbUrl)
     database.connect()
-      .then(() => { done() })
-      .catch((err) => { done(err) })
+      .then(() => {
+        database.addItem(mockItem).then((data) => {
+          mockItem._id = data._id
+        }).catch((err) => { done(err) })
+        done()
+      }).catch((err) => { done(err) })
   })
 
   afterEach(() => {
     database.db.dropDatabase()
   })
 
-  it('should add a one item to the database', (done) => {
-    database.addItem('testData')
-      .then((data) => {
-        assert.equal(data.value.example, 'testData', 'item not inserted')
-        return database.findItem('testData')
-      })
-      .then((data) => {
-        assert.equal(data.hit, 1, 'incorrect number of reports')
-        done()
-      })
-      .catch((err) => {
-        done(err)
-      })
+  it('should search for item from the database', (done) => {
+    let testSearch = { foo: 'bar' }
+    database.findItem(testSearch).then((data) => {
+      assert.equal(data.length, 1, 'wrong number of items found')
+      done()
+    }).catch((err) => {
+      done(err)
+    })
+  })
+
+  it('should return item based off of ID', (done) => {
+    let testSearch = { _id: mockItem._id }
+    database.findItem(testSearch).then((data) => {
+      assert.equal(data[0].foo, 'bar', 'incorrect data retrieved')
+      done()
+    }).catch((err) => {
+      done(err)
+    })
   })
 })

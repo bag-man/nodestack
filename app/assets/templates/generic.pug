@@ -1,0 +1,9 @@
+extend header
+
+block content 
+  each item in data
+    if item._id
+      p
+        a(href='/generic/' + item._id) #{item.foo}
+    else
+      pre=JSON.stringify(locals, null, 4)
