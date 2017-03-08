@@ -30,7 +30,6 @@ class Database {
           resolve(data)
         })
     })
-
   }
 
   findItem (data) {

@@ -2,7 +2,7 @@
   "name": "ProjectName",
   "version": "1.0.0",
   "description": "Description of project",
-  "repository" : { "type" : "git" , "url" : "git@github.com:bag-man/nodestack.git" }
+  "repository" : { "type" : "git" , "url" : "git@github.com:bag-man/nodestack.git" },
   "author": "Authors name(s)",
   "license": "GPL-3.0",
   "main": "app/server.js",
