@@ -19,7 +19,6 @@ class GenericController {
     })
 
     database.then(() => {
-      console.log(111, options)
       db.findItem(options).then((data) => {
         this.render(data, null)
       }).catch((err) => {
