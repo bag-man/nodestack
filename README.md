@@ -17,7 +17,7 @@ This is designed to be a nice chunk of boilerplate that sets up a NodeJS project
 * Eslint
 * CodeCov
 * Heroku
-* Jade
+* Pug
 * Stylus
 
 [You can see it live on Heroku here.](https://nodestack-.herokuapp.com/)
