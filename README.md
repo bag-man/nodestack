@@ -27,7 +27,7 @@ It uses Node 6.9.0 and Mongo 3.2
 ### Building
 
     nave usemain 6.9.0
-    npm install
+    yarn install
     npm run build
     npm start
 
