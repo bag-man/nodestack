@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
-mongoose.Promise = global.Promise
+    , defaultUrl = process.env.MONGODB_URI || 'mongodb://localhost/database'
 
 class Database {
-  constructor (url) {
+  constructor (url = defaultUrl) {
+    mongoose.Promise = global.Promise
     this.database = mongoose
     this.database.connect(url)
     this.con = mongoose.connection
