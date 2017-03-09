@@ -1,13 +1,12 @@
 module.exports = (url) => {
   const Database = require('./dbmongoose.js')
       , db = new Database(url)
-      , mongoose = db.database
-      , { Model, Schema } = mongoose
+      , { Model, Schema } = db.database
 
   const schema = new Schema(
     { id: Schema.ObjectId
-    , field1: Number
-    , field2: String
+    , foo: Number
+    , bar: String
     }
   )
 
@@ -17,5 +16,5 @@ module.exports = (url) => {
     }
   }
 
-  return mongoose.model(fooModel, schema, 'foos')
+  return db.database.model(fooModel, schema, 'foos')
 }

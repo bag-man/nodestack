@@ -2,7 +2,7 @@ const dbUrl = 'mongodb://localhost/test'
     , FooModel = require('../app/dbschema.js')(dbUrl)
     , Database = require('../app/dbmongoose.js')
     , assert = require('assert')
-    , testData = { field1: 10, field2: 'foo' }
+    , testData = { foo: 10, bar: 'foo' }
 
 describe('Database', () => {
   // afterEach(() => {
@@ -19,12 +19,11 @@ describe('Database', () => {
 
   it('should save & find a new model', (done) => {
     FooModel.create(testData, () => {
-      FooModel.findOne({ field1: 10 }, 'field1', (err, result) => {
+      FooModel.findOne({ foo: 10 }, 'foo', (err, result) => {
         if (err) console.log(err)
-        assert.equal(result.field1, 10, 'Data not saved')
+        assert.equal(result.foo, 10, 'Data not saved')
         done()
       })
     })
   })
-
 })
