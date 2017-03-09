@@ -1,6 +1,6 @@
 const dbUrl = 'mongodb://localhost/test'
     , FooModel = require('../app/dbschema.js')(dbUrl)
-    , Database = require('../app/dbmongoose.js')
+    // , Database = require('../app/dbmongoose.js')
     , assert = require('assert')
     , testData = { foo: 10, bar: 'foo' }
 
