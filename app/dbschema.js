@@ -12,7 +12,7 @@ module.exports = (url) => {
 
   class fooModel extends Model {
     getNumString () {
-      return this.field1 + this.field2
+      return this.foo + this.bar
     }
   }
 

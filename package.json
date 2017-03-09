@@ -10,7 +10,7 @@
   "license": "GPL-3.0",
   "main": "app/server.js",
   "scripts": {
-    "test": "npm run base-test && rm -rf coverage/",
+    "test": "rm -rf coverage/; npm run base-test",
     "build-css": "./node_modules/stylus/bin/stylus app/assets/stylesheets/index.styl -o app/assets/build/css",
     "watch-css": "./node_modules/stylus/bin/stylus app/assets/stylesheets/index.styl -o app/assets/build/css -w",
     "build-js": "./node_modules/.bin/webpack -p",
