@@ -1,5 +1,4 @@
-const Database = require('../database')
-    , dbUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017/database'
+const GenericModel = require('../models/generic.js')()
     , template = require('pug').compileFile(__dirname + '/../assets/templates/generic.pug')
 
 class GenericController {
@@ -13,17 +12,20 @@ class GenericController {
   }
 
   view (options) {
-    let db = new Database(dbUrl)
-      , database = db.connect().catch((err) => {
-      this.render(null, err)
-    })
+    let constraints = {}
 
-    database.then(() => {
-      db.findItem(options).then((data) => {
-        this.render(data, null)
-      }).catch((err) => {
+    if (options._id) {
+      constraints = { _id: false }
+    } else {
+      constraints = { _id: true, name: true }
+    }
+
+    GenericModel.find(options, constraints, (err, data) => {
+      if (err) {
         this.render(null, err)
-      })
+      } else {
+        this.render(data, null)
+      }
     })
   }
 }

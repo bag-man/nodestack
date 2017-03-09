@@ -4,11 +4,11 @@ module.exports = (app) => {
 
   app.get('/generic/:id?', (req, res, next) => {
     try {
-      let gene = new GenericController(req, res)
+      let genericController = new GenericController(req, res)
       if (req.params.id) {
-        gene.view({ _id: req.params.id })
+        genericController.view({ _id: req.params.id })
       } else {
-        gene.view(req.query)
+        genericController.view(req.query)
       }
     } catch (e) {
       next(e)

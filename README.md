@@ -12,6 +12,7 @@ This is designed to be a nice chunk of boilerplate that sets up a NodeJS project
 * ES6
 * Webpack
 * MongoDB
+* Mongoose
 * SocketIO
 * Travis CI
 * Eslint
@@ -21,6 +22,8 @@ This is designed to be a nice chunk of boilerplate that sets up a NodeJS project
 * Stylus
 
 [You can see it live on Heroku here.](https://nodestack-.herokuapp.com/)
+
+Read about it [on my blog](http://blog.owen.cymru/nodejs-es6-boiler-plate/).
 
 It uses Node 6.9.0 and Mongo 3.2
 

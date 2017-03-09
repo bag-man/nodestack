@@ -1,43 +1,21 @@
-const Database = require('../app/database')
-    , dbUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017/test'
+const dbUrl = 'mongodb://localhost/test'
+    , GenericModel = require('../app/models/generic.js')(dbUrl)
     , assert = require('assert')
 
 describe('Database', () => {
-  let database
-    , mockItem = { foo: 'bar' }
-
-  beforeEach((done) => {
-    database = new Database(dbUrl)
-    database.connect()
-      .then(() => {
-        database.addItem(mockItem).then((data) => {
-          mockItem._id = data._id
-        }).catch((err) => { done(err) })
-        done()
-      }).catch((err) => { done(err) })
-  })
+  let testData = { foo: 'bar', name: 'one' }
 
   afterEach(() => {
-    database.db.dropDatabase()
+    GenericModel.db.dropDatabase()
   })
 
-  it('should search for item from the database', (done) => {
-    let testSearch = { foo: 'bar' }
-    database.findItem(testSearch).then((data) => {
-      assert.equal(data.length, 1, 'wrong number of items found')
-      done()
-    }).catch((err) => {
-      done(err)
-    })
-  })
-
-  it('should return item based off of ID', (done) => {
-    let testSearch = { _id: mockItem._id }
-    database.findItem(testSearch).then((data) => {
-      assert.equal(data[0].foo, 'bar', 'incorrect data retrieved')
-      done()
-    }).catch((err) => {
-      done(err)
+  it('should save & find a new model', (done) => {
+    GenericModel.create(testData, () => {
+      GenericModel.findOne({ foo: 'bar' }, 'name', (err, result) => {
+        if (err) console.log(err)
+        assert.equal(result.name, 'one', 'Data not saved')
+        done()
+      })
     })
   })
 })
