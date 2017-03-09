@@ -2,12 +2,13 @@ const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 
 class Database {
-  constructor (url, done) {
-    mongoose.connect(url)
-    const db = mongoose.connection
+  constructor (url) {
+    this.database = mongoose
+    this.database.connect(url)
+    this.con = mongoose.connection
 
-    db.on('error', console.error.bind(console, 'connection error:'))
-    db.once('open', () => { console.log('connected'); done() })
+    this.con.on('error', console.error.bind(console, 'connection error:'))
+    this.con.once('open', () => {})
   }
 
   dropDatabase () {

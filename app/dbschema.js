@@ -1,17 +1,22 @@
-const mongoose = require('mongoose')
-    , { Model, Schema } = mongoose
+module.exports = (dbUrl) => {
+  const Database = require('./dbmongoose.js')
+      , url = process.env.MONGODB_URI || dbUrl
+      , db = new Database(url)
+      , mongoose = db.database
+      , { Model, Schema } = mongoose
 
-const schema = new Schema(
-  { id: Schema.ObjectId
-  , field1: Number
-  , field2: String
-  }
-)
+  const schema = new Schema(
+    { id: Schema.ObjectId
+    , field1: Number
+    , field2: String
+    }
+  )
 
-class fooModel extends Model {
-  getNumString () {
-    return this.field1 + this.field2
+  class fooModel extends Model {
+    getNumString () {
+      return this.field1 + this.field2
+    }
   }
+
+  return mongoose.model(fooModel, schema, 'foos')
 }
-
-module.exports = mongoose.model(fooModel, schema, 'foos')
