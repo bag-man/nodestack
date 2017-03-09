@@ -6,9 +6,7 @@ class Database {
     this.database = mongoose
     this.database.connect(url)
     this.con = mongoose.connection
-
     this.con.on('error', console.error.bind(console, 'connection error:'))
-    this.con.once('open', () => {})
   }
 
   dropDatabase () {

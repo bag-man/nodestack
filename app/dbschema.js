@@ -1,4 +1,6 @@
-module.exports = (dbUrl) => {
+const defaultUrl = process.env.MONGODB_URI || 'mongodb://localhost/database'
+
+module.exports = (dbUrl = defaultUrl) => {
   const Database = require('./dbmongoose.js')
       , url = process.env.MONGODB_URI || dbUrl
       , db = new Database(url)

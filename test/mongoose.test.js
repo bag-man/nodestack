@@ -1,4 +1,4 @@
-const dbUrl = process.env.MONGODB_URI || 'mongodb://localhost/test'
+const dbUrl = 'mongodb://localhost/test'
     , FooModel = require('../app/dbschema.js')(dbUrl)
     , Database = require('../app/dbmongoose.js')
     , assert = require('assert')
