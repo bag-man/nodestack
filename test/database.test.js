@@ -1,5 +1,6 @@
-const dbUrl = 'mongodb://localhost/test'
-    , GenericModel = require('../app/models/generic.js')(dbUrl)
+require('../app/database.js')()
+
+const GenericModel = require('../app/models/generic.js')
     , assert = require('assert')
 
 describe('Database', () => {

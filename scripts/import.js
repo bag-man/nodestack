@@ -1,4 +1,6 @@
-const GenericModel = require('../app/models/generic.js')()
+require('../app/database.js')()
+
+const GenericModel = require('../app/models/generic.js')
     , data = [ { foo: 'bar', name: 'one' }, { foo: 'bar', name: 'two' } ]
 
 GenericModel.db.dropDatabase(() => {

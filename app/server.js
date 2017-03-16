@@ -1,3 +1,5 @@
+require('./database.js')()
+
 let express = require('express')
   , logger = require('morgan')
   , app = express()

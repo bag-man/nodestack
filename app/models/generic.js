@@ -1,16 +1,13 @@
-module.exports = (url) => {
-  const Database = require('../database.js')
-      , db = new Database(url)
-      , { Model, Schema } = db.database
+const mongoose = require('mongoose')
+    , { Model, Schema } = mongoose
 
-  const schema = new Schema(
-    { id: Schema.ObjectId
-    , foo: String
-    , name: String
-    }
-  )
+const schema = new Schema(
+  { id: Schema.ObjectId
+  , foo: String
+  , name: String
+  }
+)
 
-  class genericModel extends Model { }
+class genericModel extends Model { }
 
-  return db.database.model(genericModel, schema, 'collection')
-}
+module.exports = mongoose.model(genericModel, schema, 'collection')

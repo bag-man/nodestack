@@ -1,4 +1,4 @@
-const GenericModel = require('../models/generic.js')()
+const GenericModel = require('../models/generic.js')
     , template = require('pug').compileFile(__dirname + '/../assets/templates/generic.pug')
 
 class GenericController {
