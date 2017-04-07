@@ -24,7 +24,11 @@ class GenericController {
       if (err) {
         this.render(null, err)
       } else {
-        this.render(data, null)
+        if (!data.length) {
+          this.render(null, 'No results.')
+        } else {
+          this.render(data, null)
+        }
       }
     })
   }
