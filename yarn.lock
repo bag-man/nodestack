@@ -1529,6 +1529,10 @@ expand-range@^1.8.1:
   dependencies:
     fill-range "^2.1.0"
 
+express-cache-headers:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/express-cache-headers/-/express-cache-headers-0.1.3.tgz#326bef942ab25ca1dc9a83692003ea41893e5859"
+
 express@^4.14.0:
   version "4.15.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.15.2.tgz#af107fc148504457f2dca9a6f2571d7129b97b35"
