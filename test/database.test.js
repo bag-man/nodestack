@@ -1,6 +1,9 @@
-const dbUrl = 'mongodb://localhost/test'
-    , GenericModel = require('../app/models/generic.js')(dbUrl)
+
+const GenericModel = require('../app/models/generic.js')
     , assert = require('assert')
+    , connectDatabase = require('../app/database.js')
+
+connectDatabase('mongodb://localhost:27017/test')
 
 describe('Database', () => {
   let testData = { foo: 'bar', name: 'one' }

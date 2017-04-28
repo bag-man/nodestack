@@ -51,7 +51,6 @@
     "mongodb": "^2.2.15",
     "mongoose": "^4.8.6",
     "morgan": "^1.7.0",
-    "path": "^0.12.7",
     "pug": "^2.0.0-beta11",
     "socket.io": "^1.5.1",
     "stylus": "^0.54.5",
