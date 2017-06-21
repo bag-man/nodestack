@@ -22,6 +22,7 @@
     "base-test": "npm run lint && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register",
     "travis": "npm run base-test && ./node_modules/.bin/codecov",
     "lint": "./node_modules/.bin/eslint -f unix .",
+    "bisect": "git bisect run ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-core/register",
     "postinstall": "npm run seed && npm run build",
     "seed": "node scripts/import.js",
     "prepush": "npm test"
