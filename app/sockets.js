@@ -10,14 +10,14 @@ export default (server) => {
 
     socket.on('error', console.log)
 
-    socket.on('join', function (room) {
+    socket.on('join', (room) => {
       if (io.sockets.adapter.rooms[room] && io.sockets.adapter.rooms[room].length < ROOM_SIZE) {
         socket.join(room)
         socket.room = room
         io.sockets.in(room).emit('joined', `${socket.id} has joined`)
       } else {
         socket.emit('joined', 'Room full :(')
-       }
+      }
     })
 
     socket.on('disconnect', () => {

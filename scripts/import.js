@@ -1,5 +1,5 @@
-import connectDatabase from '../app/database.js'
-import GenericModel from '../app/models/generic.js'
+import connectDatabase from '../app/database'
+import GenericModel from '../app/models/generic'
 
 const data = [ { foo: 'bar', name: 'one' }, { foo: 'bar', name: 'two' } ]
 

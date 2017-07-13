@@ -1,12 +1,17 @@
 extend header
 
 block content 
-  button.echo Hello World
+  div.main(ng-controller="MainController")
+    button.echo JQuery
 
-  form(action='/generic', method='GET')
-    p
-      | foo: 
-      input(type='text', name='foo')
-
-      button.search search
-
+    input(ng-model='input')
+    button(ng-click='reverse()') Reverse
+    p {{ output }} 
+  
+    form(action='/generic', method='GET')
+      p
+        | foo: 
+        input(type='text', name='foo')
+  
+        button.search search
+  

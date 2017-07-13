@@ -1,6 +1,7 @@
 import assert from 'assert'
-import GenericModel from '../app/models/generic.js'
-import connectDatabase from '../app/database.js'
+
+import GenericModel from '../app/models/generic'
+import connectDatabase from '../app/database'
 
 connectDatabase('mongodb://localhost:27017/test')
 

@@ -1,4 +1,4 @@
-import GenericModel from '../models/generic.js'
+import GenericModel from '../models/generic'
 
 const template = require('pug').compileFile(`${__dirname}/../assets/templates/generic.pug`)
 

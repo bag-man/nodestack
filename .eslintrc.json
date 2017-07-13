@@ -13,10 +13,14 @@
     "after": true,
     "afterEach": true,
     "history": true,
-    "$": true
+    "$": true,
+    "app": true
   },
 
   "rules": {
-    "one-var": 0
+    "one-var": 0,
+    "prefer-arrow-callback": 2,
+    "indent": ["error", 2],
+    "no-unused-vars": ["error", { "varsIgnorePattern": "app" }]
   }
 }
