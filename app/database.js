@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
-const dbUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017/database';
+import mongoose from 'mongoose'
+const dbUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017/database'
 
 export default (url = dbUrl) => {
   mongoose.Promise = global.Promise
-  mongoose.connect(url)
+  mongoose.connect(url, { useMongoClient: true })
   mongoose.connection.on('error', (err) => {
       console.log('Mongoose Connection ERROR: ' + err)
   })
-};
+}

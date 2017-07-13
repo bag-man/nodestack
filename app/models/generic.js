@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-const { Model, Schema } = mongoose;
+import mongoose from 'mongoose'
+const { Model, Schema } = mongoose
 
 const schema = new Schema(
   { id: Schema.ObjectId
@@ -10,4 +10,4 @@ const schema = new Schema(
 
 class genericModel extends Model { }
 
-export default mongoose.model(genericModel, schema, 'collection');
+export default mongoose.model(genericModel, schema, 'collection')

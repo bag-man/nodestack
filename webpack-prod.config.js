@@ -20,7 +20,7 @@ module.exports =
     { loaders:
       [ { test: /\.js$/
         , loader: 'babel-loader'
-        , query: { presets: [ 'es2015' ] }
+        , query: { presets: [ 'es2015', 'stage-0' ] }
         , include: path.join(__dirname, 'app/assets/js')
         }
       ]

@@ -1,4 +1,4 @@
-import Socket from 'socket.io';
+import Socket from 'socket.io'
 
 export default (server) => {
   const io = Socket.listen(server)
@@ -25,4 +25,4 @@ export default (server) => {
       console.log(socket.id + ': client disconnected')
     })
   })
-};
+}
