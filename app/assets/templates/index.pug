@@ -2,8 +2,6 @@ extend header
 
 block content 
   div.main(ng-controller="MainController")
-    button.echo JQuery
-
     input(ng-model='input')
     button(ng-click='reverse()') Reverse
     p {{ output }} 
