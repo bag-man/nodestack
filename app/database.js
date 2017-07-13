@@ -5,6 +5,6 @@ export default (url = dbUrl) => {
   mongoose.Promise = global.Promise
   mongoose.connect(url, { useMongoClient: true })
   mongoose.connection.on('error', (err) => {
-      console.log('Mongoose Connection ERROR: ' + err)
+      console.log(`Mongoose Connection ERROR: ${err}`)
   })
 }

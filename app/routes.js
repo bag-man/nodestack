@@ -1,4 +1,4 @@
-const GenericController = require(__dirname + '/controllers/generic.js')
+const GenericController = require(`${__dirname}/controllers/generic.js`)
 
 export default (app) => {
 
@@ -16,7 +16,7 @@ export default (app) => {
   })
 
   app.get('*', (req, res, next) => {
-    let template = require('pug').compileFile(__dirname + '/assets/templates/index.pug')
+    let template = require('pug').compileFile(`${__dirname}/assets/templates/index.pug`)
     try {
       let html = template({ title: 'Home' })
       res.send(html)

@@ -1,5 +1,5 @@
 import GenericModel from '../models/generic.js'
-const template = require('pug').compileFile(__dirname + '/../assets/templates/generic.pug')
+const template = require('pug').compileFile(`${__dirname}/../assets/templates/generic.pug`)
 
 class GenericController {
   constructor (req, res) {
