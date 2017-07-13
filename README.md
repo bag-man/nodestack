@@ -25,13 +25,12 @@ This is designed to be a nice chunk of boilerplate that sets up a NodeJS project
 
 Read about it [on my blog](http://blog.owen.cymru/nodejs-es6-boiler-plate/).
 
-It uses Node 6.9.0 and Mongo 3.2
+It uses Node 8.x and Mongo 3.2
 
 ### Building
 
-    nave usemain 6.9.0
+    nave usemain latest
     yarn install
-    npm run build
     npm start
 
     # Development Mode
