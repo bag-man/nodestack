@@ -19,15 +19,15 @@
     "watch-pug": "./node_modules/.bin/pug app/assets/js/angular/directives/templates/ --out app/assets/build/templates/ -w",
     "clean": "rm -rf coverage/ && rm -rf app/assets/build/css/ && rm -rf app/assets/build/templates/ && rm -rf app/assets/build/js/ && mkdir -p app/assets/build/css && mkdir -p app/assets/templates/ && mkdir -p app/assets/build/js",
     "build": "npm run clean && npm run build-css && npm run build-pug && npm run build-js",
-    "watch": "npm run clean && npm run watch-css & npm run watch-js & npm run watch-pug & nodemon -w app/ -e js,pug --exec babel-node 'app/server.js'",
-    "start": "babel-node app/server",
+    "watch": "npm run clean && npm run watch-css & npm run watch-js & npm run watch-pug & nodemon -w app/ -e js,pug --exec ./node_modules/.bin/babel-node 'app/server.js'",
+    "start": "./node_modules/.bin/babel-node app/server",
     "base-test": "npm run lint && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register",
     "travis": "npm run base-test && ./node_modules/.bin/codecov",
     "lint": "./node_modules/.bin/eslint -f unix .",
     "fix": "./node_modules/.bin/eslint -f unix --fix .",
     "bisect": "git bisect run ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-core/register",
     "postinstall": "npm run seed && npm run build",
-    "seed": "babel-node scripts/import.js",
+    "seed": "./node_modules/.bin/babel-node scripts/import.js",
     "prepush": "npm test"
   },
   "engines": {
