@@ -1,7 +1,6 @@
-const GenericController = require(`${__dirname}/controllers/generic.js`)
+import GenericController from './controllers/generic.js'
 
 export default (app) => {
-
   app.get('/generic/:id?', (req, res, next) => {
     try {
       let genericController = new GenericController(req, res)

@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+
 const { Model, Schema } = mongoose
 
 const schema = new Schema(
