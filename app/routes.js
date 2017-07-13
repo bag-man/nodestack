@@ -1,6 +1,6 @@
 const GenericController = require(__dirname + '/controllers/generic.js')
 
-module.exports = (app) => {
+export default (app) => {
 
   app.get('/generic/:id?', (req, res, next) => {
     try {
@@ -26,4 +26,4 @@ module.exports = (app) => {
   })
 
   return app
-}
+};

@@ -1,13 +1,13 @@
 
-let express = require('express')
-  , logger = require('morgan')
-  , app = express()
-  , addRoutes = require('./routes')
-  , attachSocket = require('./sockets')
-  , port = process.env.PORT || 3000
-  , path = require('path')
-  , cache = require('express-cache-headers')
-  , connectDatabase = require('./database.js')
+import express from 'express';
+import logger from 'morgan';
+let app = express();
+import addRoutes from './routes';
+import attachSocket from './sockets';
+let port = process.env.PORT || 3000;
+import path from 'path';
+import cache from 'express-cache-headers';
+import connectDatabase from './database.js';
 
 app.use(cache(60))
 app.use(logger('dev'))

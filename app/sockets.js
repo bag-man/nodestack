@@ -1,6 +1,6 @@
-const Socket = require('socket.io')
+import Socket from 'socket.io';
 
-module.exports = (server) => {
+export default (server) => {
   const io = Socket.listen(server)
   const ROOM_SIZE = 2
 
@@ -25,4 +25,4 @@ module.exports = (server) => {
       console.log(socket.id + ': client disconnected')
     })
   })
-}
+};

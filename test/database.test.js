@@ -1,7 +1,7 @@
 
-const GenericModel = require('../app/models/generic.js')
-    , assert = require('assert')
-    , connectDatabase = require('../app/database.js')
+import GenericModel from '../app/models/generic.js';
+import assert from 'assert';
+import connectDatabase from '../app/database.js';
 
 connectDatabase('mongodb://localhost:27017/test')
 
