@@ -20,7 +20,6 @@
   "rules": {
     "one-var": 0,
     "prefer-arrow-callback": 2,
-    "indent": ["error", 2],
-    "no-unused-vars": ["error", { "varsIgnorePattern": "app" }]
+    "indent": ["error", 2]
   }
 }

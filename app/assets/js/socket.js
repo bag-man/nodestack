@@ -17,6 +17,10 @@ class Socket {
     })
   }
 
+  ping () {
+    this.socket.emit('ping')
+  }
+
 }
 
 export default Socket
