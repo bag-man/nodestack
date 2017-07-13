@@ -1,6 +1,7 @@
-const GenericModel = require('../app/models/generic.js')
-    , data = [ { foo: 'bar', name: 'one' }, { foo: 'bar', name: 'two' } ]
-    , connectDatabase = require('../app/database.js')
+import connectDatabase from '../app/database'
+import GenericModel from '../app/models/generic'
+
+const data = [ { foo: 'bar', name: 'one' }, { foo: 'bar', name: 'two' } ]
 
 connectDatabase()
 

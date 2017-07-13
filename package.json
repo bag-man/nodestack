@@ -15,22 +15,27 @@
     "watch-css": "./node_modules/stylus/bin/stylus app/assets/stylesheets/index.styl -o app/assets/build/css -w",
     "build-js": "./node_modules/.bin/webpack -p",
     "watch-js": "./node_modules/.bin/webpack --watch",
-    "clean": "rm -rf coverage/ && rm -rf app/assets/build/css/ && rm -rf app/assets/build/js/ && mkdir -p app/assets/build/css && mkdir -p app/assets/build/js",
-    "build": "npm run clean && npm run build-css && npm run build-js",
-    "watch": "npm run clean && npm run watch-css & npm run watch-js & nodemon -w app/ -e js,pug",
-    "start": "node app/server",
+    "build-pug": "./node_modules/.bin/pug app/assets/js/angular/directives/templates/ --out app/assets/build/templates/",
+    "watch-pug": "./node_modules/.bin/pug app/assets/js/angular/directives/templates/ --out app/assets/build/templates/ -w",
+    "clean": "rm -rf coverage/ && rm -rf app/assets/build/css/ && rm -rf app/assets/build/templates/ && rm -rf app/assets/build/js/ && mkdir -p app/assets/build/css && mkdir -p app/assets/templates/ && mkdir -p app/assets/build/js",
+    "build": "npm run clean && npm run build-css && npm run build-pug && npm run build-js",
+    "watch": "npm run clean && npm run watch-css & npm run watch-js & npm run watch-pug & nodemon -w app/ -e js,pug --exec ./node_modules/.bin/babel-node 'app/server.js'",
+    "start": "./node_modules/.bin/babel-node app/server",
     "base-test": "npm run lint && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-register",
     "travis": "npm run base-test && ./node_modules/.bin/codecov",
     "lint": "./node_modules/.bin/eslint -f unix .",
+    "fix": "./node_modules/.bin/eslint -f unix --fix .",
     "bisect": "git bisect run ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --compilers js:babel-core/register",
     "postinstall": "npm run seed && npm run build",
-    "seed": "node scripts/import.js",
+    "seed": "./node_modules/.bin/babel-node scripts/import.js",
     "prepush": "npm test"
   },
   "engines": {
-    "node": "6.9.0"
+    "node": "8.1.4"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "codecov": "^1.0.1",
     "eslint": "^2.3.0",
     "eslint-config-clock": "^1.2.0",
@@ -43,7 +48,7 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
-    "babel": "^6.5.2",
+    "angular": "^1.6.5",
     "babel-core": "^6.18.0",
     "babel-loader": "7.0.0-alpha.2",
     "babel-preset-es2015": "^6.18.0",
@@ -53,6 +58,7 @@
     "mongoose": "^4.8.6",
     "morgan": "^1.7.0",
     "pug": "^2.0.0-beta11",
+    "pug-cli": "^1.0.0-alpha6",
     "socket.io": "^1.5.1",
     "stylus": "^0.54.5",
     "webpack": "^2.2.1"

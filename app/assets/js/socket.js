@@ -17,6 +17,10 @@ class Socket {
     })
   }
 
+  ping () {
+    this.socket.emit('ping')
+  }
+
 }
 
-module.exports = Socket
+export default Socket
