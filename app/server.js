@@ -1,4 +1,5 @@
 import cache from 'express-cache-headers'
+import compression from 'compression'
 import express from 'express'
 import logger from 'morgan'
 import path from 'path'
@@ -13,6 +14,7 @@ const port = process.env.PORT || 3000
 let app = express()
 
 app.use(cache(60))
+app.use(compression())
 app.use(logger('dev'))
 app.use(express.static(path.join(__dirname, 'assets', 'build')))
 apiRoutes(app)
